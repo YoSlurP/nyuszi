@@ -12,7 +12,7 @@
         #jatek{
             background-color: white;
             border: solid 1px black;
-            margin: 0px auto;
+            margin: 10px auto;
             padding: 10px;
             width: 864px;height: 648px;
             font-size: 0px;
@@ -26,7 +26,15 @@
         }
         .alja{
             margin: 0px auto;
-            width: 864px;
+            width: 884px;
+        }
+        #szov{
+            vertical-align: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        #jobb{
+            float: right;
         }
     </style>
     <script>
@@ -44,8 +52,6 @@
             document.getElementById("jatek").innerHTML=html;
             let ran=(Math.floor(Math.random()*9));
             let ren=(Math.floor(Math.random()*12));
-            let ra=(Math.floor(Math.random()*9));
-            let re=(Math.floor(Math.random()*12));
             if(t[ran][ren]=="repa"){
                 setKep(ran,ren,"nyuszi")
             }
@@ -123,6 +129,6 @@
 </head>
 <body onload="start();">
     <div id="jatek"></div>
-    <div class="alja"><img src="repa.png" ><span id="szov">0 darab</span><img onclick="ujra();" src="ujra.png" ></div>
+    <div class="alja"><img  src="repa.png" ><span id="szov">0 darab</span><img onclick="ujra();" id="jobb" src="ujra.png" ></div>
 </body>
 </html>
