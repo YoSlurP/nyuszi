@@ -15,6 +15,7 @@
             margin: 0px auto;
             padding: 10px;
             width: 864px;height: 648px;
+            font-size: 0px;
         }
         #jatek img:hover{
             background-color: #99ccff;
@@ -30,22 +31,98 @@
     </style>
     <script>
         let t=[];
-        let html="";
+        let countk=0;
         function start(){
+            let html="";
             for(let x=0;x<9;x++){
                 t[x]=[];
                 for(let y=0;y<12;y++){
-                    let ran(Math.floor(Math.random()*2));
-                    html+="<img src='repa.png' id='"+x+","+y+"' onclick=''>";
+                    t[x][y]="repa";
+                    html+="<img src='repa.png' id='x"+x+","+y+"y' onclick='katt("+x+","+y+")'>";
                 }
             }
             document.getElementById("jatek").innerHTML=html;
+            let ran=(Math.floor(Math.random()*9));
+            let ren=(Math.floor(Math.random()*12));
+            let ra=(Math.floor(Math.random()*9));
+            let re=(Math.floor(Math.random()*12));
+            if(t[ran][ren]=="repa"){
+                setKep(ran,ren,"nyuszi")
+            }
+            for(let x=0;x<21;x++){
+                let ra=(Math.floor(Math.random()*9));
+                let re=(Math.floor(Math.random()*12));
+                if(t[ra][re]=="repa"){
+                    setKep(ra,re,"kutya") 
+                }
+            }
 
+        }
+        let countr=0;
+        
+        function katt(x,y){
+            console.log(t[x][y])
+                    if(x>0 && t[x][y]=="repa" && t[x-1][y] =="nyuszi"){
+                        t[x][y]=="nyuszi";
+                        t[x-1][y]=="ures";
+                        countr++;       
+                        setKep(x,y,"nyuszi");
+                        setKep(x-1,y,"ures");
+                    }else if(x<8 && t[x][y]== "repa"&& t[x+1][y] =="nyuszi"){
+                        t[x][y]=="nyuszi";
+                        t[x+1][y]=="ures";
+                        countr++;
+                        setKep(x,y,"nyuszi");
+                        setKep(x+1,y,"ures");
+                    }else if(y>0 && t[x][y]== "repa"&& t[x][y-1] =="nyuszi"){
+                        t[x][y]=="nyuszi";
+                        t[x][y-1]=="ures";
+                        countr++;
+                        setKep(x,y,"nyuszi");
+                        setKep(x,y-1,"ures");   
+                    }else if(y<11 && t[x][y]== "repa"&& t[x][y+1] =="nyuszi"){
+                        t[x][y]=="nyuszi";
+                        t[x][y+1]=="ures";
+                        countr++;
+                        setKep(x,y,"nyuszi");
+                        setKep(x,y+1,"ures");
+                    }else if(t[x][y]=="ures"){
+                        t[x][y]=="repa";
+                        countr--;
+                        setKep(x,y,"repa");
+                    }
+                    kiir();
+                    win();
+        }
+        function win(){
+            if(countr==((8*12)-21)){
+                alert("Nyertél")
+                t=[];
+                start();
+                countr=0;
+                kiir();
+            }
+            
+        }
+        function ujra(){
+            countr=0;
+            t=[];
+            start();
+            kiir();
+        }
+        
+            
+        function kiir(){
+            document.getElementById("szov").innerHTML=countr+" darab";
+        }
+        function setKep(x,y,kep){
+            document.getElementById("x"+x+","+y+"y").src=kep+".png";
+            t[x][y]=kep;
         }
     </script>
 </head>
 <body onload="start();">
     <div id="jatek"></div>
-    <div class="alja"><img src="repa.png" ><span>0 darab</span><img src="ujra.png" ></div>
+    <div class="alja"><img src="repa.png" ><span id="szov">0 darab</span><img onclick="ujra();" src="ujra.png" ></div>
 </body>
 </html>
