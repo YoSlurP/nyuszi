@@ -23,16 +23,29 @@
             background-color: white;
             border: solid 1px black;
         }
-        #al{
-            text-align: center;
+        .alja{
+            margin: 0px auto;
+            width: 864px;
         }
     </style>
+    <script>
+        let t=[];
+        let html="";
+        function start(){
+            for(let x=0;x<9;x++){
+                t[x]=[];
+                for(let y=0;y<12;y++){
+                    let ran(Math.floor(Math.random()*2));
+                    html+="<img src='repa.png' id='"+x+","+y+"' onclick=''>";
+                }
+            }
+            document.getElementById("jatek").innerHTML=html;
+
+        }
+    </script>
 </head>
-<body>
+<body onload="start();">
     <div id="jatek"></div>
-    <div id="al">
-        <div class="alja"><img src="repa.png" ><span>0 darab</span></div>
-        <div class="alja"><img src="ujra.png" ></div>
-    </div>
+    <div class="alja"><img src="repa.png" ><span>0 darab</span><img src="ujra.png" ></div>
 </body>
 </html>
